@@ -7,31 +7,31 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
 
-    body, html { height: 100%; width: 100%; background: url('https://media.istockphoto.com/id/973319188/vector/open-books-reading-seamless-pattern-outline.jpg?s=612x612&w=0&k=20&c=3SoExXa7PqiY5SmYHw8V1QD0SuKS-TxhhDr2JmUJ-CE=') center/cover no-repeat; position: relative; overflow-x: hidden; color: #000; }
+    body, html { height: 100%; width: 100%; background: url('https://wallpapers.com/images/hd/black-and-white-book-1920-x-1080-wallpaper-004yikgbyrhdwl3w.jpg') center/cover no-repeat; position: relative; overflow-x: hidden; color: #000; }
 
-    body::before { content: ""; position: absolute; inset: 0; background: rgba(17, 16, 16, 0.763); z-index: 0; }
+    body::before { content: ""; position: absolute; inset: 0; ; z-index: 0; }
 
     .content { position: relative; z-index: 1; height: 100%; width: 100%; padding: 30px; display: flex; flex-direction: column; }
 
-    .header { font-size: 2rem; font-weight: bold; color: rgb(245, 244, 244); display: flex; align-items: center; justify-content: center; }
+    .header { font-size: 2rem; font-weight: bold; color: rgb(243, 237, 237); display: flex; align-items: center; justify-content: center; }
 
     .button-group { margin-top: 40px; display: flex; justify-content: center; gap: 30px; }
 
-    .button-group button { padding: 12px 24px; border: none; border-radius: 30px; background-color: rgba(203, 198, 198, 0.6); color:black; font-size: 1.1rem; cursor: pointer; transition:0.3s ease; background-color:rgba(240, 233, 233, 0.529); }
+    .button-group button { padding: 12px 24px; border: none; border-radius: 30px; background-color: rgb(36, 36, 36); color:rgb(240, 235, 235); font-size: 1.1rem; cursor: pointer; transition:0.3s ease; background-color:rgba(30, 30, 30, 0.763); }
 
-    .button-group button:hover { background-color:rgb(252, 240, 240); }
+    .button-group button:hover { background-color:rgb(18, 18, 18); }
 
-    .user-type { margin-top: 20px; text-align: center; font-size: 1.5rem; font-weight: bold; display: none;color: rgb(239, 237, 237); }
+    .user-type { margin-top: 20px; text-align: center; font-size: 1.5rem; font-weight: bold; display: none;color: rgb(242, 240, 240); }
 
     .user-type.active { display: block; }
 
     .search-bar, .seller-form { margin-top: 20px; text-align: center; display: none; opacity: 0; transition: opacity 0.5s ease; }
 
-    .search-bar.active, .seller-form.active { display: block; opacity: 1; }
+    .search-bar.active, .seller-form.active { display: block; opacity: 1;  }
 
-    .search-bar input, .seller-form input, .seller-form select { width: 320px; max-width: 90%; padding: 12px 18px; border: 2px solid rgba(24, 24, 24, 0.4); border-radius: 25px; font-size: 1rem; margin-bottom: 10px; outline: none; }
+    .search-bar input, .seller-form input, .seller-form select { width: 320px; max-width: 90%; padding: 12px 18px; border: 2px solid rgba(24, 24, 24, 0.759); border-radius: 25px; font-size: 1rem; margin-bottom: 10px; outline: none; }
 
-    .seller-form button { padding: 12px 24px; border: none; border-radius: 30px; background-color: rgb(242, 236, 236); color: rgb(17, 17, 17); font-size: 1.1rem; cursor: pointer; float: right; margin-top: 10px; }
+    .seller-form button { padding: 12px 24px; border: none; border-radius: 30px; background-color: rgb(159, 152, 152); color: rgb(17, 17, 17); font-size: 1.1rem; cursor: pointer; float: right; margin-top: 10px; }
 
     .book-list { margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; display: none; background-color: #000000b1; }
 
@@ -39,19 +39,20 @@
 
     .book-card:hover { transform: translateY(-5px); }
 
-    .book-card img { width: 100%; height: 200px; object-fit: cover; }
+    .book-card img { width: 100%; height: 200px; object-fit: cover; background-color: #e7e6e6; }
 
     .book-card .info { padding: 15px; }
 
     .book-card .info h3 { margin-bottom: 8px; font-size: 1.2rem; }
 
-    .book-card .info p { font-size: 0.95rem; color: #393939; }
+    .book-card .info p { font-size: 0.95rem; color: #f3f0f094; }
 
-    .book-detail { display: none; padding: 30px; background-color: #1d1c1c82; border-radius: 15px; margin: 20px; text-align: center; }
+    .book-detail { display: none; padding: 30px; background-color: #1d1c1c5e; border-radius: 15px; margin: 20px; text-align: center; }
     .book-detail h2 { font-size: 2rem; margin-bottom: 20px; }
     .book-detail p { font-size: 1.2rem; margin: 10px 0; }
     .book-detail button { margin-top: 20px; padding: 10px 30px; font-size: 1rem; border: none; border-radius: 30px; background-color: black; color: rgb(235, 234, 234); cursor: pointer; }
     .book-detail button:hover { background-color: rgb(241, 236, 236); }
+    
   </style>
 </head>
 <body>
