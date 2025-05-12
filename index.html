@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>COSO Portal</title>
   <style>
     body, html {
@@ -93,14 +93,47 @@
       width: 100%;
     }
 
-    .login-box input {
+    .login-box input,
+    .login-box select {
       width: 100%;
       padding: 12px;
       margin-bottom: 20px;
       border: none;
       border-radius: 8px;
       font-size: 16px;
+      box-sizing: border-box;
     }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #00bcd4;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .login-box button:hover {
+      background-color: #0097a7;
+    }
+
+    .switch {
+      margin-top: 10px;
+      cursor: pointer;
+      color: #00bcd4;
+    }
+
+    .error, .success {
+      font-size: 14px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .error { color: tomato; }
+    .success { color: lightgreen; }
   </style>
 </head>
 <body>
@@ -120,15 +153,29 @@
 
   <div class="login-container">
     <div class="login-box" id="login-box">
-      <h2>Login</h2>
-      <input type="text" placeholder="Username" required />
-      <input type="email" placeholder="Email ID" required />
-      <input type="password" placeholder="Password" required />
-      <button onclick="submitLogin()">Login</button>
+      <h2 id="formTitle">Login</h2>
+      <input type="text" id="username" placeholder="Username" style="display:none;" />
+      <input type="email" id="email" placeholder="Email ID" />
+      <input type="password" id="password" placeholder="Password" />
+      <input type="text" id="college" placeholder="College" style="display:none;" />
+      <input type="text" id="branch" placeholder="Branch" style="display:none;" />
+      <select id="year" style="display:none;">
+        <option value="">Select Academic Year</option>
+        <option value="1">1st Year</option>
+        <option value="2">2nd Year</option>
+        <option value="3">3rd Year</option>
+        <option value="4">4th Year</option>
+      </select>
+      <button onclick="handleAuth()">Login</button>
+      <div class="switch" onclick="toggleForm()">Don't have an account? Register</div>
+      <div class="error" id="errorMsg"></div>
+      <div class="success" id="successMsg"></div>
     </div>
   </div>
 
   <script>
+    let isLogin = true;
+
     setTimeout(() => {
       document.querySelector('.coso-loader').style.display = 'none';
       document.querySelector('p').style.display = 'none';
@@ -141,11 +188,76 @@
       document.getElementById('login-box').style.display = 'block';
     }
 
-    function submitLogin() {
-      window.location.href = "index page.html";
-      // window.location.href = "dashboard.html";
+    function toggleForm() {
+      isLogin = !isLogin;
+      document.getElementById('formTitle').textContent = isLogin ? "Login" : "Register";
+      document.querySelector('#login-box button').textContent = isLogin ? "Login" : "Register";
+      document.querySelector('.switch').textContent = isLogin
+        ? "Don't have an account? Register"
+        : "Already have an account? Login";
+
+      document.getElementById('username').style.display = isLogin ? "none" : "block";
+      document.getElementById('college').style.display = isLogin ? "none" : "block";
+      document.getElementById('branch').style.display = isLogin ? "none" : "block";
+      document.getElementById('year').style.display = isLogin ? "none" : "block";
+
+      clearMessages();
+    }
+
+    function clearMessages() {
+      document.getElementById('errorMsg').textContent = "";
+      document.getElementById('successMsg').textContent = "";
+    }
+
+    function handleAuth() {
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const college = document.getElementById('college').value.trim();
+      const branch = document.getElementById('branch').value.trim();
+      const year = document.getElementById('year').value;
+
+      const errorMsg = document.getElementById('errorMsg');
+      const successMsg = document.getElementById('successMsg');
+
+      clearMessages();
+
+      if (!email || !password || (!isLogin && (!username || !college || !branch || !year))) {
+        errorMsg.textContent = "Please fill in all fields.";
+        return;
+      }
+
+      if (!email.includes('@')) {
+        errorMsg.textContent = "Please enter a valid email address.";
+        return;
+      }
+
+      const storedUser = JSON.parse(localStorage.getItem('cosoUser'));
+
+      if (isLogin) {
+        if (
+          storedUser &&
+          storedUser.email === email &&
+          storedUser.password === password
+        ) {
+          successMsg.textContent = "Login successful!";
+          setTimeout(() => {
+            window.location.href = "index page.html";
+          }, 1500);
+        } else {
+          errorMsg.textContent = "Invalid email or password.";
+        }
+      } else {
+        const newUser = { username, email, password, college, branch, year };
+        localStorage.setItem('cosoUser', JSON.stringify(newUser));
+        successMsg.textContent = "Registration successful! Please log in.";
+        toggleForm();
+      }
     }
   </script>
 </body>
 </html>
 
+    
+    
+    
