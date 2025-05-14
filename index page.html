@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>COSO - Student Network</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .navbar {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 5%;
+      color: white;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .account-btn {
+      background-color: #4caf50;
+      padding: 8px 16px;
+      border-radius: 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hero {
+      height: 50vh;
+      background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding-top: 60px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 80px 10%;
+      background-color: #fff;
+    }
+
+    .feature-card {
+      background-color: rgba(128, 128, 128, 0.399);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .profile-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-container {
+      background-color: rgba(244, 240, 240, 0.782);
+      padding: 30px 40px;
+      border-radius: 20px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-pic-wrapper {
+      position: relative;
+      margin: 0 auto 20px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .profile-pic-wrapper input {
+      display: none;
+    }
+
+    .profile-pic-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #01889a;
+    }
+
+    .profile-info {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .profile-info p {
+      margin: 8px 0;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #01889a;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      color: #191919;
+    }
+
+    .close-btn:hover {
+      color: #f44336;
+    }
+
+    .logout-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #01889a;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background-color: #01474e;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">COSO</div>
+    <ul class="nav-links"></ul>
+    <button class="account-btn" onclick="showProfile()">Account</button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Welcome to COSO</h1>
+      <p>Your hub for student connection and collaboration.</p>
+    </div>
+  </header>
+
+  <!-- Features -->
+  <main class="features">
+    <a href="book tran.html">
+      <section class="feature-card">
+        <h2>📚 Book Transaction</h2>
+        <p>Exchange and donate books with fellow students easily.</p>
+      </section>
+    </a>
+
+    <a href="chatbox.html">
+      <section class="feature-card">
+        <h2>💬 One-on-One Chat</h2>
+        <p>Connect with students across universities via private chat.</p>
+      </section>
+    </a>
+
+    <a href="sports and hack saction.html">
+      <section class="feature-card">
+        <h2>🏆 Sports & Cultural Events</h2>
+        <p>Discover and participate in exciting inter-university events.</p>
+      </section>
+    </a>
+
+    <a href="tech and cul news.html">
+      <section class="feature-card">
+        <h2>💡 Technical Events</h2>
+        <p>Stay updated with hackathons, tech talks, and coding contests.</p>
+      </section>
+    </a>
+  </main>
+
+  <!-- Profile Modal -->
+  <div class="profile-modal" id="profileModal">
+    <div class="profile-container">
+      <button class="close-btn" onclick="hideProfile()">×</button>
+
+      <div class="profile-pic-wrapper" onclick="document.getElementById('uploadInput').click();">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" class="profile-img" id="profile-pic" />
+        <input type="file" accept="image/*" id="uploadInput" onchange="uploadProfilePic(event)" />
+      </div>
+
+      <h2 id="profile-name">User Name</h2>
+
+      <div class="profile-info">
+        <p><span class="label">Email:</span> <span id="profile-email"></span></p>
+        <p><span class="label">College:</span> <span id="profile-college"></span></p>
+        <p><span class="label">Branch:</span> <span id="profile-branch"></span></p>
+        <p><span class="label">Year:</span> <span id="profile-year"></span></p>
+      </div>
+
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <script>
+    function showProfile() {
+      const user = JSON.parse(localStorage.getItem('cosoUser'));
+
+      if (!user) {
+        alert('No user is currently logged in. Redirecting to login page.');
+        window.location.href = 'login.html';
+        return;
+      }
+
+      document.getElementById('profile-name').textContent = user.username || "User";
+      document.getElementById('profile-email').textContent = user.email || "";
+      document.getElementById('profile-college').textContent = user.college || "";
+      document.getElementById('profile-branch').textContent = user.branch || "";
+      document.getElementById('profile-year').textContent = user.year ? user.year + " Year" : "";
+
+      document.getElementById('profile-pic').src = user.profilePic || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+      document.getElementById('profileModal').style.display = "flex";
+    }
+
+    function hideProfile() {
+      document.getElementById('profileModal').style.display = "none";
+    }
+
+    function logout() {
+      localStorage.removeItem("cosoUser");
+      window.location.href = "login.html";
+    }
+
+    function uploadProfilePic(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imageData = e.target.result;
+        document.getElementById('profile-pic').src = imageData;
+
+        const user = JSON.parse(localStorage.getItem('cosoUser')) || {};
+        user.profilePic = imageData;
+        localStorage.setItem('cosoUser', JSON.stringify(user));
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+
+</body>
+</html>
